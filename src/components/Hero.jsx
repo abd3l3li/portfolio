@@ -19,8 +19,9 @@ const MAX_INPUT_LENGTH = 64;
 
 const SAFE_COMMANDS = {
   help: () =>
-    'Available commands: help, ls, whoami, about, skills, projects, contact, cv en, cv fr, clear, echo <text>',
+    'Available commands: help, ls, pwd, whoami, about, skills, projects, contact, clear, echo <text>',
   ls: () => 'projects/  contact/  resume/  notes/',
+  pwd: () => '/home/abd3l3li/portfolio',
   whoami: () => 'root — software engineering student / full-stack builder',
   about: () =>
     'I build reliable systems and polished interfaces: C/C++, shell tooling, React, TypeScript, and shipping product-grade experiences.',
@@ -29,8 +30,6 @@ const SAFE_COMMANDS = {
   projects: () => 'Open the project cards below to review recent work. This terminal is read-only and never navigates the page.',
   contact: () =>
     'email: elbazness2@gmail.com | github: github.com/abd3l3li | linkedin: linkedin.com/in/abdelalielbaz',
-  'cv en': () => 'CV (EN): /cv/Abdelali_Elbaz_cv_en.pdf',
-  'cv fr': () => 'CV (FR): /cv/Abdelali_Elbaz_cv_fr.pdf',
 };
 
 function TermLine({ line, showCursor }) {
@@ -72,19 +71,12 @@ function parseCommand(raw) {
     return { type: 'clear' };
   }
 
-  if (normalized === 'ls') {
-    return { type: 'output', text: SAFE_COMMANDS.ls() };
+  if (normalized === 'ls' || normalized === 'pwd') {
+    return { type: 'output', text: SAFE_COMMANDS[normalized]() };
   }
 
   if (normalized === 'echo') {
     return { type: 'output', text: rest || '' };
-  }
-
-  if (normalized === 'cv') {
-    const target = rest.toLowerCase();
-    if (target === 'en') return { type: 'output', text: SAFE_COMMANDS['cv en']() };
-    if (target === 'fr') return { type: 'output', text: SAFE_COMMANDS['cv fr']() };
-    return { type: 'error', text: 'usage: cv en | cv fr' };
   }
 
   if (!Object.prototype.hasOwnProperty.call(SAFE_COMMANDS, normalized)) {
