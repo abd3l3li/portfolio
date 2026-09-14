@@ -19,19 +19,25 @@ const HIDDEN_REPOS = new Set([
 const FALLBACK_DESCRIPTIONS = {
   Webserv:
     'HTTP/1.1-compliant web server built from scratch in C++ with a team of three: request parsing, method routing, CGI execution, and non-blocking I/O with poll(). Validated against real browser and curl clients.',
-  chaosshell:
-    'POSIX-compliant Unix shell in C: pipes, redirections, heredoc, signals, and 10+ builtins. Zero memory leaks confirmed with Valgrind.',
-  paradox3d:
-    'First-person 3D raycasting engine in C using MiniLibX: DDA raycasting, texture mapping, collision detection, and stable frame pacing.',
   Inception:
     'Containerized multi-service stack: Nginx, WordPress, and MariaDB with custom Dockerfiles, TLS, and persistent volumes.',
-  minitalk: 'UNIX signal-based communication program between two processes.',
-  push_swap: 'Sorting algorithm challenge using a constrained instruction set and two stacks.',
+  minitalk: 'Client-server text exchange in C using SIGUSR1 and SIGUSR2 to transmit characters as binary signals.',
+  push_swap: 'Integer sorting program that uses two stacks and a limited instruction set to minimize operations.',
   AppGallery: 'React gallery of historic Islamic battles with descriptions, dates, and locations.',
   'mini-http-server': 'C++ HTTP/1.1 server built while completing the CodeCrafters HTTP server challenge.',
   'mini-server': 'Tiny TCP chat server in C using select() to handle multiple clients.',
   portfolio: 'React and Vite portfolio site for Abdelali El Baz.',
   'webserv-parsing': 'C++ Webserv practice module for parsing server blocks and matching request locations.',
+  chaosshell: 'Minimal Unix shell in C with command execution, processes, file descriptors, and pipes.',
+  paradox3d: 'C raycasting renderer inspired by early FPS games, with textured walls, movement, and collision detection.',
+  'micro-shell': 'Minimal Unix shell in C with command execution, pipes, separators, and the built-in cd command.',
+  Born2beroot: 'Linux server administration project covering a virtual machine, users, SSH, firewall rules, and monitoring.',
+  'dining-philosophers': 'Concurrency simulation of philosophers sharing forks, using threads and mutexes to manage contention.',
+  so_long: '2D tile-based game in C with map parsing, player movement, collectibles, and a MiniLibX window.',
+  get_next_line: 'C function that reads and returns one line at a time from a file descriptor.',
+  ft_printf: 'C implementation of formatted output based on the standard printf function.',
+  libft: 'Reusable C library containing standard string, memory, character, and linked-list functions.',
+  'CPP-modules': 'C++ exercises covering classes, inheritance, polymorphism, templates, exceptions, and standard containers.',
 };
 
 export default function Projects() {
@@ -107,7 +113,7 @@ export default function Projects() {
                 {repo.fork && <span className="project-badge">fork</span>}
               </div>
               <p className="project-desc">
-                {repo.description || FALLBACK_DESCRIPTIONS[repo.name] || 'Peer-reviewed project at 1337, see the repo for details.'}
+                {FALLBACK_DESCRIPTIONS[repo.name] || repo.description || 'Peer-reviewed project at 1337, see the repo for details.'}
               </p>
               <div className="project-meta">
                 {repo.language && <span>{repo.language}</span>}
