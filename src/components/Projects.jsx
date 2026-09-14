@@ -26,7 +26,7 @@ const FALLBACK_DESCRIPTIONS = {
   AppGallery: 'React gallery of historic Islamic battles with descriptions, dates, and locations.',
   'mini-http-server': 'C++ HTTP/1.1 server built while completing the CodeCrafters HTTP server challenge.',
   'mini-server': 'Tiny TCP chat server in C using select() to handle multiple clients.',
-  portfolio: 'React and Vite portfolio site for Abdelali El Baz.',
+  portfolio: 'React and Vite portfolio.',
   'webserv-parsing': 'C++ Webserv practice module for parsing server blocks and matching request locations.',
   chaosshell: 'Minimal Unix shell in C with command execution, processes, file descriptors, and pipes.',
   paradox3d: 'C raycasting renderer inspired by early FPS games, with textured walls, movement, and collision detection.',
@@ -110,7 +110,7 @@ export default function Projects() {
             >
               <div className="project-card-head">
                 <span className="project-name">./{repo.name}</span>
-                {repo.fork && <span className="project-badge">fork</span>}
+                {repo.fork && repo.name !== 'Webserv' && <span className="project-badge">fork</span>}
               </div>
               <p className="project-desc">
                 {FALLBACK_DESCRIPTIONS[repo.name] || repo.description || 'Peer-reviewed project at 1337, see the repo for details.'}
