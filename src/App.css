@@ -217,12 +217,15 @@ body.cursor-active .cursor-ring {
   .nav-links {
     display: none;
   }
+
   .nav-prompt {
     display: none;
   }
+
   .nav-burger {
     display: flex;
   }
+
   .nav-mobile {
     display: flex;
   }
@@ -256,9 +259,11 @@ body.cursor-active .cursor-ring {
 .dot-red {
   background: var(--dot-red);
 }
+
 .dot-amber {
   background: var(--dot-amber);
 }
+
 .dot-green {
   background: var(--dot-green);
 }
@@ -420,18 +425,22 @@ body.cursor-active .cursor-ring {
     transform: translate(0, 0);
     clip-path: inset(0 0 0 0);
   }
+
   25% {
     transform: translate(-4px, 2px);
     clip-path: inset(10% 0 55% 0);
   }
+
   50% {
     transform: translate(3px, -2px);
     clip-path: inset(45% 0 15% 0);
   }
+
   75% {
     transform: translate(-3px, 1px);
     clip-path: inset(65% 0 5% 0);
   }
+
   100% {
     transform: translate(0, 0);
     clip-path: inset(0 0 0 0);
@@ -443,18 +452,22 @@ body.cursor-active .cursor-ring {
     transform: translate(0, 0);
     clip-path: inset(0 0 0 0);
   }
+
   25% {
     transform: translate(4px, -1px);
     clip-path: inset(55% 0 10% 0);
   }
+
   50% {
     transform: translate(-3px, 2px);
     clip-path: inset(15% 0 45% 0);
   }
+
   75% {
     transform: translate(3px, -1px);
     clip-path: inset(5% 0 65% 0);
   }
+
   100% {
     transform: translate(0, 0);
     clip-path: inset(0 0 0 0);
@@ -465,9 +478,11 @@ body.cursor-active .cursor-ring {
   .hero {
     grid-template-columns: 1fr;
   }
+
   .hero-title {
     max-width: none;
   }
+
   .avatar-badge {
     right: 20px;
   }
@@ -515,12 +530,10 @@ body.cursor-active .cursor-ring {
   right: 0;
   top: -100%;
   height: 40%;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(168, 85, 247, 0.16),
-    transparent
-  );
+  background: linear-gradient(to bottom,
+      transparent,
+      rgba(168, 85, 247, 0.16),
+      transparent);
   transition: top 0.5s ease;
   pointer-events: none;
 }
