@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTypedBoot } from '../hooks/useTypedBoot';
 import TerminalWindow from './TerminalWindow';
 import avatar from '../assets/avatar.webp';
@@ -16,6 +16,7 @@ const bootLines = [
 ];
 
 const MAX_INPUT_LENGTH = 64;
+const MAX_SCROLLBACK_ENTRIES = 120;
 
 const SAFE_COMMANDS = {
   help: () =>
@@ -93,6 +94,12 @@ export default function Hero() {
   const { displayed, current, done } = useTypedBoot(bootLines);
   const [history, setHistory] = useState([]);
   const [input, setInput] = useState('');
+  const terminalScrollRef = useRef(null);
+
+  useEffect(() => {
+    const terminalScroll = terminalScrollRef.current;
+    if (terminalScroll) terminalScroll.scrollTop = terminalScroll.scrollHeight;
+  }, [current, displayed.length, done, history]);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -105,7 +112,7 @@ export default function Hero() {
       if (parsed.type === 'clear') return [];
       if (parsed.type === 'output') next.push({ type: 'out', text: parsed.text });
       if (parsed.type === 'error') next.push({ type: 'out', text: parsed.text });
-      return next;
+      return next.slice(-MAX_SCROLLBACK_ENTRIES);
     });
 
     setInput('');
@@ -142,7 +149,7 @@ export default function Hero() {
         </div>
 
         <TerminalWindow title="boot.sh | 80x24" className="hero-terminal">
-          <div className="terminal-scroll" aria-live="polite">
+          <div ref={terminalScrollRef} className="terminal-scroll" aria-live="polite">
             {displayed.map((l, i) => (
               <TermLine key={`boot-${i}`} line={l} showCursor={false} />
             ))}
