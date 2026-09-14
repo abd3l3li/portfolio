@@ -280,8 +280,15 @@ body.cursor-active .cursor-ring {
   font-size: 0.88rem;
 }
 
+.terminal-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
 .term-line {
   min-height: 1.6em;
+  margin: 0;
 }
 
 .term-prompt {
@@ -305,6 +312,30 @@ body.cursor-active .cursor-ring {
   margin-left: 2px;
   vertical-align: -2px;
   animation: blink 1s steps(1) infinite;
+}
+
+.terminal-form {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.terminal-input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font: inherit;
+  padding: 0;
+  caret-color: var(--cyan);
+}
+
+.terminal-input::placeholder {
+  color: var(--text-faint);
 }
 
 @keyframes blink {
