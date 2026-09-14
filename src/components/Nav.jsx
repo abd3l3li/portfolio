@@ -25,7 +25,7 @@ export default function Nav() {
   return (
     <header className="nav">
       <div className="nav-inner">
-        <a href="#home" className="nav-brand" aria-label="Abdelali El Baz — home">
+        <a href="#home" className="nav-brand" aria-label="Abdelali El Baz, home">
           <img src={avatar} alt="" className="nav-avatar" width="34" height="34" />
           <span className="nav-prompt">root@portfolio</span>
         </a>

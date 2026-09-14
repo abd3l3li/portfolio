@@ -5,11 +5,11 @@ import avatar from '../assets/avatar.webp';
 
 const bootLines = [
   { type: 'cmd', text: 'whoami' },
-  { type: 'out', text: 'Software engineering student — systems & full-stack' },
+  { type: 'out', text: 'Software engineering student focused on systems and full-stack work' },
   { type: 'cmd', text: 'cat mission.txt' },
   {
     type: 'out',
-    text: 'Building production-grade systems in C/C++ and shipping full-stack apps in React/TypeScript at 1337 (42 Network).',
+    text: 'Building systems in C and C++, and full-stack apps in React and TypeScript at 1337 (42 Network).',
   },
   { type: 'cmd', text: 'echo $STATUS' },
   { type: 'out', text: 'OPEN_TO_INTERNSHIPS=true' },
@@ -22,9 +22,9 @@ const SAFE_COMMANDS = {
     'Available commands: help, ls, pwd, whoami, about, skills, projects, contact, clear, echo <text>',
   ls: () => 'projects/  contact/  resume/  notes/',
   pwd: () => '/home/abd3l3li/portfolio',
-  whoami: () => 'root — software engineering student / full-stack builder',
+  whoami: () => 'root: software engineering student and full-stack developer',
   about: () =>
-    'I build reliable systems and polished interfaces: C/C++, shell tooling, React, TypeScript, and shipping product-grade experiences.',
+    'I build systems in C and C++, shell tools, and web interfaces with React and TypeScript.',
   skills: () =>
     'C/C++, Bash, Git, Linux, Docker, React, TypeScript, Node.js, REST APIs, systems thinking, debugging, performance.',
   projects: () => 'Open the project cards below to review recent work. This terminal is read-only and never navigates the page.',
@@ -119,9 +119,9 @@ export default function Hero() {
           I build the parts most portfolios skip: the shell, the server, the socket.
         </h1>
         <p className="hero-sub">
-          Software engineering student at 1337 (42 Network), based in Marrakech —
-          currently shipping systems in C/C++ and interfaces in React, one
-          peer-reviewed project at a time.
+          Software engineering student at 1337 (42 Network), based in Marrakech. I build
+          systems in C and C++, ship full-stack interfaces in React and TypeScript, and work
+          daily with Docker, Nginx, Git, and Linux.
         </p>
         <div className="hero-actions">
           <a href="#projects" className="pill-btn pill-filled" data-cursor-hover>
@@ -141,7 +141,7 @@ export default function Hero() {
           </span>
         </div>
 
-        <TerminalWindow title="boot.sh — 80x24" className="hero-terminal">
+        <TerminalWindow title="boot.sh | 80x24" className="hero-terminal">
           <div className="terminal-scroll" aria-live="polite">
             {displayed.map((l, i) => (
               <TermLine key={`boot-${i}`} line={l} showCursor={false} />

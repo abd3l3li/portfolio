@@ -14,7 +14,7 @@ export default function Contact() {
       <p className="section-tag">cat contact.sh</p>
       <h2 className="section-title">Let's talk</h2>
       <p className="contact-sub">
-        Open to internships and collaborations — systems, full-stack, or somewhere between.
+        Open to internships and collaborations involving systems or full-stack development.
       </p>
 
       <div className="contact-list">
@@ -42,7 +42,7 @@ export default function Contact() {
             className="pill-btn pill-outline"
             data-cursor-hover
           >
-            Download CV — EN
+            Download CV (EN)
           </a>
           <a
             href="/cv/Abdelali_Elbaz_cv_fr.pdf"
@@ -50,7 +50,7 @@ export default function Contact() {
             className="pill-btn pill-outline"
             data-cursor-hover
           >
-            Télécharger CV — FR
+            Télécharger CV (FR)
           </a>
         </div>
       </div>
