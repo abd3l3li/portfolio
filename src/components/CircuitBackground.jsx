@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 
 const CELL = 46;
 const DOT_R = 1.3;
+const SIGNAL_COUNT = 24;
 
 export default function CircuitBackground() {
   const canvasRef = useRef(null);
@@ -11,7 +12,7 @@ export default function CircuitBackground() {
     const ctx = canvas.getContext('2d');
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    let width, height, cols, rows, nodes;
+    let width, height, cols, rows, nodes, signals;
     let raf;
 
     function build() {
@@ -33,6 +34,14 @@ export default function CircuitBackground() {
           }
         }
       }
+      signals = Array.from({ length: SIGNAL_COUNT }, () => ({
+        x: Math.floor(Math.random() * (cols - 1)) * CELL,
+        y: Math.floor(Math.random() * (rows - 1)) * CELL,
+        horizontal: Math.random() > 0.5,
+        offset: Math.random() * CELL,
+        speed: 0.035 + Math.random() * 0.035,
+        trail: 7 + Math.random() * 8,
+      }));
     }
 
     function drawStatic() {
@@ -79,6 +88,36 @@ export default function CircuitBackground() {
         ctx.fillStyle = `rgba(168, 85, 247, ${alpha})`;
         ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
         ctx.fill();
+      }
+
+      for (const signal of signals) {
+        const distance = (signal.offset + t * signal.speed) % CELL;
+        const position = signal.horizontal ? signal.x + distance : signal.y + distance;
+        const start = position - signal.trail;
+
+        ctx.beginPath();
+        ctx.strokeStyle = 'rgba(34, 211, 238, 0.18)';
+        ctx.lineWidth = 1.5;
+        if (signal.horizontal) {
+          ctx.moveTo(start, signal.y);
+          ctx.lineTo(position, signal.y);
+        } else {
+          ctx.moveTo(signal.x, start);
+          ctx.lineTo(signal.x, position);
+        }
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.fillStyle = 'rgba(103, 232, 249, 0.8)';
+        ctx.shadowColor = 'rgba(34, 211, 238, 0.8)';
+        ctx.shadowBlur = 5;
+        if (signal.horizontal) {
+          ctx.arc(position, signal.y, 1.4, 0, Math.PI * 2);
+        } else {
+          ctx.arc(signal.x, position, 1.4, 0, Math.PI * 2);
+        }
+        ctx.fill();
+        ctx.shadowBlur = 0;
       }
 
       raf = requestAnimationFrame(drawFrame);
