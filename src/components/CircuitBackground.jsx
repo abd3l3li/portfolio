@@ -37,10 +37,8 @@ export default function CircuitBackground() {
       signals = Array.from({ length: SIGNAL_COUNT }, () => ({
         x: Math.floor(Math.random() * (cols - 1)) * CELL,
         y: Math.floor(Math.random() * (rows - 1)) * CELL,
-        horizontal: Math.random() > 0.5,
-        offset: Math.random() * CELL,
-        speed: 0.035 + Math.random() * 0.035,
-        trail: 7 + Math.random() * 8,
+        phase: Math.random() * Math.PI * 2,
+        speed: 0.0008 + Math.random() * 0.0008,
       }));
     }
 
@@ -60,6 +58,13 @@ export default function CircuitBackground() {
       for (const n of nodes) {
         ctx.beginPath();
         ctx.arc(n.x, n.y, DOT_R, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.fillStyle = 'rgba(74, 222, 128, 0.45)';
+      for (const signal of signals) {
+        ctx.beginPath();
+        ctx.arc(signal.x, signal.y, 1.5, 0, Math.PI * 2);
         ctx.fill();
       }
     }
@@ -91,31 +96,15 @@ export default function CircuitBackground() {
       }
 
       for (const signal of signals) {
-        const distance = (signal.offset + t * signal.speed) % CELL;
-        const position = signal.horizontal ? signal.x + distance : signal.y + distance;
-        const start = position - signal.trail;
+        const pulse = (Math.sin(t * signal.speed + signal.phase) + 1) / 2;
+        const radius = 1.2 + pulse * 1.1;
+        const alpha = 0.35 + pulse * 0.55;
 
         ctx.beginPath();
-        ctx.strokeStyle = 'rgba(34, 211, 238, 0.18)';
-        ctx.lineWidth = 1.5;
-        if (signal.horizontal) {
-          ctx.moveTo(start, signal.y);
-          ctx.lineTo(position, signal.y);
-        } else {
-          ctx.moveTo(signal.x, start);
-          ctx.lineTo(signal.x, position);
-        }
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.fillStyle = 'rgba(103, 232, 249, 0.8)';
-        ctx.shadowColor = 'rgba(34, 211, 238, 0.8)';
-        ctx.shadowBlur = 5;
-        if (signal.horizontal) {
-          ctx.arc(position, signal.y, 1.4, 0, Math.PI * 2);
-        } else {
-          ctx.arc(signal.x, position, 1.4, 0, Math.PI * 2);
-        }
+        ctx.fillStyle = `rgba(134, 239, 172, ${alpha})`;
+        ctx.shadowColor = 'rgba(74, 222, 128, 0.9)';
+        ctx.shadowBlur = 5 + pulse * 7;
+        ctx.arc(signal.x, signal.y, radius, 0, Math.PI * 2);
         ctx.fill();
         ctx.shadowBlur = 0;
       }
