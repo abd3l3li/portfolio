@@ -439,6 +439,53 @@ body.cursor-active .cursor-ring {
   filter: hue-rotate(-30deg) saturate(4);
 }
 
+.avatar-message {
+  position: absolute;
+  left: calc(100% + 14px);
+  top: 50%;
+  width: max-content;
+  max-width: 220px;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--cyan);
+  border-radius: 4px;
+  background: var(--bg-panel-2);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35), 0 0 18px rgba(34, 211, 238, 0.12);
+  color: var(--text);
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.7rem;
+  line-height: 1.4;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-8px, -50%);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 3;
+}
+
+.avatar-message::before {
+  content: '> ';
+  color: var(--cyan);
+}
+
+.avatar-message::after {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-left: 1px solid var(--cyan);
+  border-bottom: 1px solid var(--cyan);
+  background: var(--bg-panel-2);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.avatar-badge:hover .avatar-message,
+.avatar-badge:focus-visible .avatar-message {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
 .avatar-badge:hover img,
 .avatar-badge:focus-visible img {
   box-shadow: 0 0 46px rgba(168, 85, 247, 0.75);

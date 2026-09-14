@@ -136,6 +136,9 @@ export default function Hero() {
       <div className="hero-visual">
         <div className="avatar-badge" tabIndex={0} data-cursor-hover>
           <img src={avatar} alt="Abdelali El Baz" />
+          <span className="avatar-message" aria-hidden="true">
+            signal found: curiosity detected
+          </span>
         </div>
 
         <TerminalWindow title="boot.sh — 80x24" className="hero-terminal">
