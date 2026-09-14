@@ -314,6 +314,12 @@ body.cursor-active .cursor-ring {
   animation: blink 1s steps(1) infinite;
 }
 
+.terminal-help {
+  color: var(--text-faint);
+  font-size: 0.78rem;
+  opacity: 0.85;
+}
+
 .terminal-form {
   display: flex;
   align-items: center;

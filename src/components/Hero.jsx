@@ -19,7 +19,8 @@ const MAX_INPUT_LENGTH = 64;
 
 const SAFE_COMMANDS = {
   help: () =>
-    'Available commands: help, whoami, about, skills, projects, contact, cv en, cv fr, clear, echo <text>',
+    'Available commands: help, ls, whoami, about, skills, projects, contact, cv en, cv fr, clear, echo <text>',
+  ls: () => 'projects/  contact/  resume/  notes/',
   whoami: () => 'root — software engineering student / full-stack builder',
   about: () =>
     'I build reliable systems and polished interfaces: C/C++, shell tooling, React, TypeScript, and shipping product-grade experiences.',
@@ -69,6 +70,10 @@ function parseCommand(raw) {
 
   if (normalized === 'clear') {
     return { type: 'clear' };
+  }
+
+  if (normalized === 'ls') {
+    return { type: 'output', text: SAFE_COMMANDS.ls() };
   }
 
   if (normalized === 'echo') {
@@ -154,6 +159,12 @@ export default function Hero() {
                 {entry.text}
               </p>
             ))}
+
+            {done && (
+              <p className="term-line term-out terminal-help">
+                Type <span className="term-prompt">help</span> to list the available commands.
+              </p>
+            )}
 
             <form onSubmit={handleSubmit} className="terminal-form">
               <label className="term-prompt" htmlFor="terminal-input">
