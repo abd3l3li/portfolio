@@ -4,6 +4,17 @@ const GITHUB_USER = 'abd3l3li';
 // Forked repos that are real team projects worth showing.
 // Add more repo names here as needed. Other forks are filtered out.
 const WHITELISTED_FORKS = ['Webserv'];
+const HIDDEN_REPOS = new Set([
+  'abd3l3li',
+  'web-lab',
+  'AppGallery',
+  'weatherApp',
+  'cpp-shots',
+  'mini-http-server',
+  'webserv-parsing',
+  'Shell',
+  'zero_day',
+]);
 
 const FALLBACK_DESCRIPTIONS = {
   Webserv:
@@ -37,7 +48,12 @@ export default function Projects() {
       .then((data) => {
         if (cancelled) return;
         const visible = data
-          .filter((r) => !r.fork || WHITELISTED_FORKS.includes(r.name))
+          .filter(
+            (r) =>
+              !HIDDEN_REPOS.has(r.name) &&
+              !r.name.toLowerCase().startsWith('alx-') &&
+              (!r.fork || WHITELISTED_FORKS.includes(r.name)),
+          )
           .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
         setRepos(visible);
       })
