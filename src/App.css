@@ -579,6 +579,12 @@ body.cursor-active .cursor-ring {
   }
 }
 
+@media (max-width: 640px) {
+  .avatar-message {
+    display: none;
+  }
+}
+
 /* ---------- section titles ---------- */
 .section-title {
   font-size: clamp(1.6rem, 3vw, 2.1rem);
